@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Client-Side State Machine Test</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+
+    <style type="text/css">
+        #page {
+            background-color: #dedede;
+            width: 200px;
+            border: solid 2px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+        }
+
+        #stack_container, #buttons {
+            width: 180px;
+            padding: 10px;
+        }
+
+        #stack_container {
+            width: 100%;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #buttons {
+            border-top: solid 1px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        document.observe('dom:loaded', function() {
+
+            var EmptyState = {
+                push: function() {
+                    var item = this.item_template.cloneNode(false);
+                    item.removeClassName('fx-hidden');
+                    this.items.push(item);
+                    this.stack_container.appendChild(item);
+                    this.onPush();
+                },
+                onPush: function() {
+                    Form.Element.enable(this.remove_button);
+                    Object.extend(this, PartialState);
+                },
+                pop: function() {
+                },
+                onPop: function() {
+                }
+            };
+
+            var FullState = {
+                push: function() {
+                },
+                onPush: function() {
+                },
+                pop: function() {
+                    var item = this.items.pop();
+                    this.stack_container.removeChild(item);
+                    this.onPop();
+                },
+                onPop: function() {
+                    Form.Element.enable(this.add_button);
+                    Object.extend(this, PartialState);
+                }
+            };
+
+            var PartialState = {
+                push: function() {
+                    var item = this.item_template.cloneNode(false);
+                    item.removeClassName('fx-hidden');
+                    this.items.push(item);
+                    this.stack_container.appendChild(item);
+                    this.onPush();
+                },
+                onPush: function() {
+                    if (this.items.length == 5) {
+                        Form.Element.disable(this.add_button);
+                        Object.extend(this, FullState);
+                    }
+                },
+                pop: function() {
+                    var item = this.items.pop();
+                    this.stack_container.removeChild(item);
+                    this.onPop();
+                },
+                onPop: function() {
+                    if (this.items.length == 0) {
+                        Form.Element.disable(this.remove_button);
+                        Object.extend(this, EmptyState);
+                    }
+                }
+            };
+
+
+            var Stack = Class.create({
+                initialize: function(state) {
+                    this.items = [];
+                    this.stack_container = $('stack_container');
+                    this.item_template = $('item_template');
+                    this.add_button = $('add_button');
+                    this.remove_button = $('remove_button');
+
+                    var that = this;
+                    this.add_button.observe('click', function() {
+                        that.push();
+                    });
+                    this.remove_button.observe('click', function() {
+                        that.pop();
+                    });
+
+                    Object.extend(this, state);
+                }
+            });
+
+            new Stack(EmptyState);
+        });
+    </script>
+</head>
+<body>
+<img id="item_template" src="images/task.png" alt="" class="fx-hidden"/>
+
+<div id="page" class="fx-rounded-top fx-rounded-bottom">
+    <span id="stack_container"></span>
+
+    <div id="buttons">
+        <button id="remove_button" class="fx-remove" disabled><img src="images/remove.png" alt=""/> Remove</button>
+        <button id="add_button" class="fx-add"><img src="images/add.png" alt=""/> Add</button>
+    </div>
+</div>
+</body>
+</html>

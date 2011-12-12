@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+
+    <title>Controller Test</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+    <script type="text/javascript" src="scripts/libraries/effects.js"></script>
+
+    <script type="text/javascript" src="scripts/protopatterns/protopatterns.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/template.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/mvc.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/resource/resource.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/view.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/list.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/form.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/controller/controller.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/form-two-column-layout.css"/>
+
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+
+            // Alias the MVC namespace
+            var MVC = org.protopatterns.mvc.controller;
+
+            // Select the containers from the DOM
+            var container = $('controller-test');
+            var listContainer = container.select('.fx-list')[0];
+            var formContainer = container.select('.fx-form')[0];
+
+            // Hide the form initially - required for script.aculo.us effects
+            formContainer.setStyle({
+                display: 'none'
+            });
+
+            // Use the controller factory to construct the instance
+            var controller = MVC.ControllerFactory.create(container);
+
+            // Once the controller is constructed, we can get the form and list view objects
+            var formView = formContainer._view;
+            var listView = listContainer._view;
+
+            // Hook up the list event handlers
+            container.observe('before:create', function(event) {
+                if (formView.isDirty() && !confirm("Do you want to discard your changes?")) {
+                    event.stop();
+                }
+            });
+            container.observe('create:success', function(event) {
+                listView.clearSelections();
+                formView.render(event.memo.data);
+                formView.show();
+            });
+            container.observe('before:select', function(event) {
+                if (formView.isDirty() && !confirm("Do you want to discard your changes?")) {
+                    event.stop();
+                }
+            });
+            container.observe('after:select', function(event) {
+                controller.edit(event.memo.id);
+            });
+            container.observe('edit:success', function(event) {
+                formView.render(event.memo.data);
+                formView.show();
+            });
+            container.observe('before:remove', function(event) {
+                if (formView.isDirty() && !confirm("Do you want to discard your changes?")) {
+                    event.stop();
+                }
+                else {
+                    // TODO Determine how to fix hide() & highlight() - Is confirm() modal?
+                    // Something halts execution of effects
+                    formView.hide();
+                    listView.highlight(event.memo.id);
+                    if (!confirm("Do you want to remove this item?")) {
+                        event.stop();
+                    }
+                }
+            });
+            container.observe('remove:success', function() {
+                controller.list();
+            });
+            container.observe('list:success', function(event) {
+                listView.render(event.memo.data);
+            });
+
+            // Hook up the form event handlers
+            container.observe('add:success', function() {
+                formView.hide();
+                controller.list();
+            });
+            container.observe('add:failure', function(event) {
+                formView.render(event.memo.data);
+            });
+            container.observe('update:success', function() {
+                formView.hide();
+                controller.list();
+            });
+            container.observe('update:failure', function(event) {
+                formView.render(event.memo.data);
+            });
+            container.observe('on:cancel', function() {
+                if (!formView.isDirty() || confirm("Do you want to discard your changes?")) {
+                    formView.hide();
+                }
+            });
+            container.observe('after:hide', function() {
+                listView.clearSelections();
+            });
+
+            // Load the resource list
+            controller.list();
+        });
+    </script>
+</head>
+<body>
+<h1>Fx.Controller Test</h1>
+
+<div id="controller-test" class="fx-controller">
+    <a href="customers" class="fx-resource"></a>
+    <!--<a href="offers" class="fx-resource"></a>-->
+    <!--<a href="product_benefits" class="fx-resource"></a>-->
+    <!--<a href="product_features" class="fx-resource"></a>-->
+    <!--<a href="product_offers" class="fx-resource"></a>-->
+    <!--<a href="products" class="fx-resource"></a>-->
+    <!--<a href="shopping_cart_items" class="fx-resource"></a>-->
+
+    <a href="templates/customers/list.xsl" class="fx-list-template"></a>
+    <a href="templates/customers/form.xsl" class="fx-form-template"></a>
+
+    <div class="fx-list"></div>
+    <div class="fx-form"></div>
+</div>
+</body>
+</html>

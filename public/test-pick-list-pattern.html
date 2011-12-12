@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+
+    <title>Pick-List Pattern Test</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+    <script type="text/javascript" src="scripts/libraries/effects.js"></script>
+
+    <script type="text/javascript" src="scripts/protopatterns/protopatterns.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/template.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/transformer.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/transaction.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/mvc.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/resource/resource.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/view.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/form.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/list.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/controller/controller.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/pattern.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/list-manager.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/pick-list.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/form-two-column-layout.css"/>
+
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+            var pickList = org.protopatterns.pattern.PickListFactory.create($('pick-list-test'));
+            pickList.list();
+        });
+    </script>
+</head>
+<body>
+<h1>Pick-List Pattern Test</h1>
+
+<div id="pick-list-test" class="fx-pattern fx-pick-list">
+    <div class="fx-column fx-controller fx-source">
+        <a href="offers" class="fx-resource"></a>
+        <a href="templates/catalog_offers/list.xsl" class="fx-list-template"></a>
+        <div id="catalog_offers" class="fx-list"></div>
+    </div>
+    <div class="fx-column fx-pattern fx-list-manager fx-controller fx-destination">
+        <a href="shopping_carts/1/shopping_cart_items" class="fx-resource"></a>
+        <a href="templates/shopping_cart_items/list.xsl" class="fx-list-template"></a>
+        <a href="templates/shopping_cart_items/form.xsl" class="fx-form-template"></a>
+        <div class="fx-list"></div>
+        <div class="fx-form"></div>
+    </div>
+    <a class="fx-transformer" href="templates/shopping_cart_items/offer_transform.xsl"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+
+    <title>ProtoPatterns ROA</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/site.css"/>
+
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+
+<div id="content" class="fx-drop-shadow">
+
+    <h1>Welcome to ProtoPatterns</h1>
+
+    <p>
+        Welcome to ProtoPatterns, a simple Resource Oriented Architecture (ROA) stack
+        to power your next web application.
+    </p>
+
+
+    <h2 id="design_goals">ProtoPatterns Design Goals</h2>
+
+    <p>
+        The ProtoPatterns project values most highly:
+    </p>
+    <ul>
+        <li>
+            <h3>Simplicity</h3>
+
+            <p>
+                The server requires only Rails and the make_resourceful plugin. A single
+                controller provides the base class for your application's RESTful controllers.
+            </p>
+        </li>
+        <li>
+            <h3>Convention</h3>
+
+            <p>
+                Taking a page from the Rails 'convention over configuration' philosophy, the
+                client micro-framework also uses a predefined directory structure for XSLT view
+                files. That's right, XSLT files. See the following link for the rationale behind
+                this <a href="#xslt">design decision</a>.
+            </p>
+        </li>
+    </ul>
+
+
+    <h2 id="design_decisions">ProtoPatterns Design Decisions</h2>
+
+    <p>
+        With any project, design decisions must be made based on constraints, philosophy, etc.
+        This section outlines the design decisions made for the ProtoPatterns ROA stack.
+    </p>
+    <ul>
+        <li>
+            <h3>Ruby on Rails</h3>
+
+            <p>
+                Maybe you've heard that Ruby and Rails aren't scalable. Maybe you should see
+                for yourself. The list of
+                <a href="http://rubyonrails.org/applications">high-volume sites</a> running on
+                Rails is impressive. No, your eyes don't deceive you. Twitter is on the list.
+            </p>
+
+            <p>
+                In my experience, Rails has been the shortest distance between conception
+                and deployment.
+            </p>
+        </li>
+        <li id="xslt">
+            <h3>XSLT</h3>
+
+            <p>
+                That's right, XSLT. I realize that XML has fallen out of favor with
+                the rise of JSON, but there are a few very good reasons for choosing this
+                representation over JSON and a multitude of others.
+            </p>
+            <ol>
+                <li>
+                    <h4>Compiled Code</h4>
+
+                    <p>
+                        That's right, compiled code. :-) The XSLT processors built into every
+                        modern browser are compiled code - most likely C++. Transforming XML
+                        into HTML is a (relatively) simple matter, and the compiled code should
+                        easily outperform DOM building script. I said "should" because I haven't
+                        taken the time to test this assertion. I suppose JIT compiled script
+                        could perform almost as well, but I don't even know if any browser
+                        has a JavaScript engine sophisticated enough to tackle this...
+                    </p>
+                </li>
+                <li>
+                    <h4>Simplified API Server</h4>
+
+                    <p>
+                        Since the server only has to return XML and not HTML, the templates
+                        can be processed on the client, which has more than adequate power
+                        these days.
+                    </p>
+
+                    <p>
+                        Since the server is a simple API server, the client is responsible
+                        for rendering the views, as well as implementing the controllers
+                        and the interaction patterns controlling the flow between views.
+                    </p>
+                </li>
+            </ol>
+        </li>
+    </ul>
+
+
+    <h2 id="interactive_tests">ProtoPatterns Interactive Tests</h2>
+
+    <p>
+        The ProtoPatterns Interactive Tests are designed to provide interactive confirmation
+        that the stack is working as advertised. Of course, Automated Tests are mandatory
+        and are in the works for both the API server using Test::Unit and the client using
+        the script.aculo.us Test.Unit framework.
+    </p>
+    <p>
+        Of course, you can view the client script using Firebug, the Chrome Developer Tools,
+        etc. I plan to also serve up the server code itself, complete with Railscasts-like
+        syntax highlighting.
+    </p>
+    <p>
+        The ProtoPatterns Interactive Tests include:
+    </p>
+    <ul>
+        <li>
+            <a href="test-template.html">org.protopatterns.Template</a>
+        </li>
+        <li>
+            <a href="test-resource.html">org.protopatterns.mvc.resource.Resource</a>
+        </li>
+        <li>
+            <a href="test-view.html">org.protopatterns.mvc.view.View</a>
+        </li>
+        <li>
+            <a href="test-panel.html">org.protopatterns.mvc.view.PanelView</a>
+        </li>
+        <li>
+            <a href="test-form.html">org.protopatterns.mvc.view.FormView</a>
+        </li>
+        <li>
+            <a href="test-list.html">org.protopatterns.mvc.view.ListView</a>
+        </li>
+        <li>
+            <a href="test-controller.html">org.protopatterns.mvc.controller.Controller</a>
+        </li>
+        <li>
+            <a href="test-list-manager-pattern.html">org.protopatterns.pattern.ListManager</a>
+        </li>
+        <li>
+            <a href="test-ice-pattern.html">org.protopatterns.pattern.InContextEditor</a>
+        </li>
+        <li>
+            <a href="test-detail-manager-pattern.html">org.protopatterns.pattern.DetailManager</a>
+        </li>
+        <li>
+            <a href="test-pick-list-pattern.html">org.protopatterns.pattern.PickList</a>
+        </li>
+        <li>
+            <a href="test-xref-manager-pattern.html">org.protopatterns.pattern.CrossReferenceManager</a>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

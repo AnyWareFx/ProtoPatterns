@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+
+    <title>Resource Test</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+
+    <script type="text/javascript" src="scripts/protopatterns/protopatterns.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/mvc.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/resource/resource.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+
+            // Alias the RESOURCE namespace
+            var RESOURCE = org.protopatterns.mvc.resource;
+
+            // Select the container from the DOM
+            var container = $('resource-test');
+
+            // Use the resource factory to construct the resource instance
+            var resource = RESOURCE.ResourceFactory.create(
+                container.select('.fx-resource')[0]
+            );
+
+            // Hook up the event handlers
+            ['get', 'put', 'post', 'delete'].each(function(method) {
+                container.observe('before:' + method, function() {
+                    alert('before:' + method);
+                });
+                ['create', 'success', 'failure', 'complete'].each(function(status) {
+                    container.observe(method + ':' + status, function() {
+                        alert(method + ':' + status);
+                    });
+                });
+            });
+
+            // Get the resource
+            resource.GET("/1");
+        });
+    </script>
+</head>
+<body>
+<h1>Resource Test</h1>
+<div id="resource-test" class="fx-controller">
+    <a href="customers" class="fx-resource"></a>
+</div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+
+    <title>Cross-Reference Manager Pattern Test</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+    <script type="text/javascript" src="scripts/libraries/effects.js"></script>
+
+    <script type="text/javascript" src="scripts/protopatterns/protopatterns.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/template.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/transformer.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/transaction.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/mvc.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/resource/resource.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/view.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/form.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/list.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/controller/controller.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/pattern.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/list-manager.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/detail-manager.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/pick-list.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/xref-manager.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/form-two-column-layout.css"/>
+
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+            var PATTERN = org.protopatterns.pattern;
+
+            var xrefManager = PATTERN.CrossReferenceManagerFactory.create($('xref-manager-test'));
+            xrefManager.list();
+        });
+    </script>
+</head>
+<body>
+<h1>Cross-Reference Manager Pattern Test</h1>
+
+<div id="xref-manager-test" class="fx-pattern fx-detail-manager fx-pick-list">
+    <div class="fx-column fx-pattern fx-list-manager fx-controller fx-master">
+        <a href="offers" class="fx-resource"></a>
+
+        <a href="templates/offers/list.xsl" class="fx-list-template"></a>
+        <a href="templates/offers/form.xsl" class="fx-form-template"></a>
+
+        <div class="fx-list"></div>
+        <div class="fx-form"></div>
+    </div>
+    <div class="fx-column fx-pattern fx-list-manager fx-controller fx-detail fx-destination">
+        <a href="product_offers" class="fx-resource"></a>
+
+        <a href="templates/product_offers/list.xsl" class="fx-list-template"></a>
+        <a href="templates/product_offers/form.xsl" class="fx-form-template"></a>
+
+        <div class="fx-list"></div>
+        <div class="fx-form"></div>
+    </div>
+    <div class="fx-column fx-controller fx-source">
+        <a href="products" class="fx-resource"></a>
+
+        <a href="templates/products/list.xsl" class="fx-list-template"></a>
+        <a href="templates/products/form.xsl" class="fx-form-template"></a>
+
+        <div id="catalog_products" class="fx-list"></div>
+        <div class="fx-form"></div>
+    </div>
+    <a class="fx-transformer" href="templates/product_offers/product_transform.xsl"></a>
+</div>
+</body>
+</html>

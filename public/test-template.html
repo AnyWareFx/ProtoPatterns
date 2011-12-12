@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Template Test</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+    <script type="text/javascript" src="scripts/libraries/effects.js"></script>
+
+    <script type="text/javascript" src="scripts/protopatterns/protopatterns.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/template.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+
+            // Alias the root namespace
+            var FX = org.protopatterns;
+
+            // Select the container from the DOM
+            var container = $('template-test');
+
+            // Construct the template from the anchor
+            var template = FX.TemplateClassFactory.create(
+                container.select('.fx-view-template')[0]
+            );
+
+            // Hook up the event handlers
+            container.observe('load:success', function(event) {
+                alert('load:success');
+            });
+            container.observe('load:failure', function(event) {
+                alert('load:failure ' + event.memo.data);
+            });
+
+            // Load the template
+            template.load();
+        });
+    </script>
+</head>
+<body>
+<div id="template-test" class="fx-controller">
+    <a href="templates/customers/view.xsl" class="fx-view-template"></a>
+</div>
+</body>
+</html>

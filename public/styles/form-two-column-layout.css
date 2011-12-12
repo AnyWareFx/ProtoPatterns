@@ -1,0 +1,22 @@
+.fx-two-column-form fieldset li {
+    float: left;
+    clear: left;
+    width: 100%;
+}
+
+.fx-two-column-form .fx-error-list li {
+    float: none;
+}
+
+.fx-two-column-form fieldset li label {
+    display: inline;
+    float: left;
+    width: 100px;
+    margin-top: 7px;
+    margin-right: 1em;
+    text-align: right;
+}
+
+.fx-two-column-form fieldset li input, .fx-two-column-form fieldset li textarea {
+    width: 340px;
+}

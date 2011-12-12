@@ -1,0 +1,86 @@
+.fx-controller {
+    margin: 10px;
+    padding: 10px;
+/*    width: 600px; */
+}
+
+.fx-column {
+    float: left;
+}
+
+.fx-hidden {
+    display: none;
+}
+
+.fx-form, .fx-panel  {
+/*    margin-left: 50px; */
+    width: 500px;
+}
+
+.fx-error-list {
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    width: 440px;
+}
+
+.fx-error-list li {
+    float: none;
+}
+
+.fx-in-context-editor .fx-form .fx-remove {
+    display: none;
+}
+
+button.fx-remove {
+    float: right;
+    margin-right: 0;
+}
+
+caption, legend {
+    padding: 5px;
+}
+
+td, th {
+    padding: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 3px;
+}
+
+input, textarea {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+textarea {
+    width: 400px;
+    max-width: 400px;
+    height: 150px;
+    line-height: 150%;
+}
+
+fieldset button {
+    margin-top: 5px;
+    margin-right: 5px;
+    height: 32px;
+}
+
+fieldset button img, fieldset legend img, caption img {
+    vertical-align: middle;
+}
+
+th .fx-create, th .fx-remove, th .fx-add-to, th .fx-remove-from, .fx-control-bar img {
+    border-width: 0;
+}
+
+.fx-list table {
+    width: 100%;
+}
+
+.fx-actions {
+    width: 20px;
+}

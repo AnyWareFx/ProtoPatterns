@@ -1,0 +1,19 @@
+body {
+    font: normal 100% Verdana, Tahoma, sans-serif;
+}
+
+caption, legend {
+    font-weight: bold;
+}
+
+form li label {
+    font-size: 14px;
+}
+
+form input, form textarea {
+    font-size: 14px;
+}
+
+button {
+    font-size: 14px;
+}

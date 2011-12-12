@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+
+    <title>Pattern Auto-Initialization Test</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+    <script type="text/javascript" src="scripts/libraries/effects.js"></script>
+
+    <script type="text/javascript" src="scripts/protopatterns/webwarefx.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/transformer.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/transaction.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/mvc.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/resource/resource.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/view.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/panel.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/form.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/list.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/controller/controller.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/pattern.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/in-context-editor.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/list-manager.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/detail-manager.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/pick-list.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/form-two-column-layout.css"/>
+
+    <script type="text/javascript">
+        Event.observe(window, "load", function() {
+            com.webwarefx.pattern.Pattern.autoInitialize(document.body);
+            $('ice-test')._pattern.read(1);
+            $('list-manager-test')._pattern.list();
+            $('master-detail-test')._pattern.list();
+            $('pick-list-test')._pattern.list();
+        });
+    </script>
+</head>
+<body>
+<h1>Pattern Auto-Initialization Test</h1>
+
+<div id="ice-test" class="fx-column fx-controller fx-pattern fx-in-context-editor">
+    <a href="offers" class="fx-resource"></a>
+
+    <div class="fx-panel"></div>
+    <div class="fx-form"></div>
+</div>
+
+<div id="list-manager-test" class="fx-column fx-controller fx-pattern fx-list-manager">
+    <a href="offers" class="fx-resource"></a>
+
+    <div class="fx-list"></div>
+    <div class="fx-form"></div>
+</div>
+
+<div id="master-detail-test" class="fx-column fx-pattern fx-master-detail">
+    <div class="fx-controller fx-master">
+        <a href="offers" class="fx-resource"></a>
+        <div class="fx-list"></div>
+    </div>
+    <div class="fx-controller fx-detail">
+        <a href="products" class="fx-resource"></a>
+        <div class="fx-list"></div>
+    </div>
+</div>
+
+<div id="pick-list-test" class="fx-column fx-pattern fx-pick-list">
+    <div class="fx-controller fx-source">
+        <a href="offers" class="fx-resource"></a>
+        <div id="catalog_offers" class="fx-list"></div>
+    </div>
+    <div class="fx-controller fx-destination">
+        <a href="shopping_carts/1/shopping_cart_items" class="fx-resource"></a>
+        <div class="fx-list"></div>
+    </div>
+    <a class="fx-transformer" href="templates/shopping_cart_items/offer_transform.xsl"></a>
+</div>
+</body>
+</html>

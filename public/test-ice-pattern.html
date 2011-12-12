@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+
+    <title>In-Context-Editor Pattern Test</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+    <script type="text/javascript" src="scripts/libraries/effects.js"></script>
+    <script type="text/javascript" src="scripts/libraries/mustache.js"></script>
+
+    <script type="text/javascript" src="scripts/protopatterns/protopatterns.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/template.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/mvc.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/resource/resource.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/view.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/form.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/panel.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/controller/controller.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/pattern.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/pattern/in-context-editor.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/form-two-column-layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/site.css"/>
+
+    <style type="text/css">
+        #content {
+            position: fixed;
+            top: 30px;
+            bottom: 30px;
+            left: 30px;
+            overflow: scroll;
+            width: 67%;
+            min-width: 600px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+            var ice = org.protopatterns.pattern.InContextEditorFactory.create($('ice-test'));
+            ice.read(1);
+        });
+    </script>
+</head>
+<body>
+<div id="content" class="fx-drop-shadow">
+
+    <h1>In-Context-Editor Pattern Test</h1>
+
+    <div id="ice-test" class="fx-controller fx-pattern fx-in-context-editor">
+        <a href="customers" class="fx-resource"></a>
+        <a href="templates/customers/panel.html" class="fx-panel-template"></a>
+        <a href="templates/customers/form.html" class="fx-form-template"></a>
+        <div class="fx-panel">
+            <p>
+                This content should be replaced momentarily. If not, please refresh your browser.
+                This is a known (albeit, very annoying) bug.
+            </p>
+        </div>
+        <div class="fx-form"></div>
+    </div>
+</div>
+</body>
+</html>

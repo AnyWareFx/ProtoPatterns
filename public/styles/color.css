@@ -1,0 +1,42 @@
+.fx-list {
+    border-color: #333333;
+}
+
+th {
+    color: white;
+    background-color: #333333;
+}
+
+tbody tr.fx-odd, tfoot, .fx-form, .fx-panel {
+    background-color: #efefef;
+}
+
+tbody tr.fx-even, caption, legend {
+    background-color: #cdcdcd;
+}
+
+tbody tr:hover {
+    background-color: lightsteelblue;
+}
+
+.fx-error-list {
+    color: red;
+}
+
+.fx-invalid {
+    border-color: red;
+}
+
+tbody tr:hover.fx-selected, .fx-selected {
+    background-color: midnightblue !important;
+    color: white;
+}
+
+input, .fx-control-bar {
+    border-color: #333333;
+}
+
+.fx-panel input {
+    color: black;
+    background-color: #eeeeee
+}

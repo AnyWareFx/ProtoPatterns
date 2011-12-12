@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+
+    <title>List Test</title>
+
+    <script type="text/javascript" src="scripts/libraries/prototype.js"></script>
+
+    <script type="text/javascript" src="scripts/protopatterns/protopatterns.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/template.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/mvc.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/resource/resource.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/view.js"></script>
+    <script type="text/javascript" src="scripts/protopatterns/mvc/view/list.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="styles/font.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/color.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/form-two-column-layout.css"/>
+
+    <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+
+            // Alias the MVC namespace
+            var MVC = org.protopatterns.mvc;
+
+            // Select the containers and anchor from the DOM
+            var container = $('list-test');
+            var listContainer = container.select('.fx-list')[0];
+            var anchor = container.select('.fx-resource')[0];
+
+            // Get the 'href' attribute from the anchor to construct the view
+            var href = anchor.readAttribute('href');
+
+            // Use the list and resource factories to construct the list and resource instances
+            var list = MVC.view.ListViewFactory.create(listContainer, href);
+            var resource = MVC.resource.ResourceFactory.create(anchor);
+
+            // Hook up the event handlers
+            container.observe('get:success', function(event) {
+                list.render(event.memo.data);
+            });
+            container.observe('get:failure', function(event) {
+                alert('get:failure ' + event.memo.data);
+            });
+            container.observe('on:create', function() {
+                alert('on:create');
+            });
+            container.observe('after:select', function(event) {
+                alert('after:select ' + event.memo.id);
+            });
+            container.observe('on:remove', function(event) {
+                alert('on:remove ' + event.memo.id);
+            });
+
+            // Get the resources to display in the list
+            resource.GET();
+        });
+    </script>
+</head>
+<body>
+<h1>Fx.ListView Test</h1>
+
+<div id="list-test" class="fx-controller">
+    <a href="customers" class="fx-resource"></a>
+    <!--<a href="offers" class="fx-resource"></a>-->
+    <!--<a href="product_benefits" class="fx-resource"></a>-->
+    <!--<a href="product_features" class="fx-resource"></a>-->
+    <!--<a href="product_offers" class="fx-resource"></a>-->
+    <!--<a href="products" class="fx-resource"></a>-->
+    <!--<a href="shopping_cart_items" class="fx-resource"></a>-->
+
+    <a href="templates/customers/list.xsl" class="fx-list-template"></a>
+
+    <div class="fx-list"></div>
+</div>
+</body>
+</html>
