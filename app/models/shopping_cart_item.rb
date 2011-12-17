@@ -9,6 +9,6 @@ class ShoppingCartItem
   property :id,         Serial
   property :created_at, DateTime
 
-  property :units,      Numeric
-  property :item_total, Numeric
+  property :units,      Integer
+  property :item_total, Float
 end

@@ -15,7 +15,7 @@ class Product
 
   property :name,           String
   property :description,    Text
-  property :units_on_hand,  Numeric
-  property :units_on_order, Numeric
-  property :unit_cost,      Numeric
+  property :units_on_hand,  Integer
+  property :units_on_order, Integer
+  property :unit_cost,      Float
 end

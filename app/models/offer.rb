@@ -13,5 +13,5 @@ class Offer
 
   property :name,         String
   property :description,  Text
-  property :unit_price,   Numeric
+  property :unit_price,   Float
 end

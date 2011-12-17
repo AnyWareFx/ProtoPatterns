@@ -10,5 +10,5 @@ class ShoppingCart
   property :id,          Serial
   property :created_at,  DateTime
 
-  property :order_total, Numeric
+  property :order_total, Float
 end
