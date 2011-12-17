@@ -44,6 +44,7 @@ put '/products/:id' do
   product.attributes = data
   if product.save
     status 201
+    DataMapper::Inflector::dasherize product.to_xml
   else
     status 412
   end

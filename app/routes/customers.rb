@@ -44,6 +44,7 @@ put '/customers/:id' do
   customer.attributes = data
   if customer.save
     status 201
+    DataMapper::Inflector::dasherize customer.to_xml
   else
     status 412
   end
