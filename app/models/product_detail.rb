@@ -6,8 +6,6 @@ require 'dm-types'
 class ProductDetail
   include DataMapper::Resource
 
-  belongs_to :product
-
   property :id,             Serial
   property :created_at,     DateTime
   property :type,           Discriminator
@@ -18,8 +16,10 @@ end
 
 
 class ProductBenefit < ProductDetail
+  belongs_to :product
 end
 
 
 class ProductFeature < ProductDetail
+  belongs_to :product
 end
