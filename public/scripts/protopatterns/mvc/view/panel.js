@@ -36,6 +36,7 @@
 
             container = $(container);
             container.on('click', '.fx-edit', function(event) {
+                event.preventDefault();
                 container.fire('on:edit', {
                     id: DOM.getResourceID(event.element())
                 });
