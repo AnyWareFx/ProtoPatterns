@@ -265,15 +265,15 @@ end
                              :state => customer_spec[:state],
                              :zip => customer_spec[:zip]
 
-#  cart_spec = customer_spec[:cart]
-#  cart = ShoppingCart.create :customer => customer,
-#                             :order_total => cart_spec[:order_total]
+  cart_spec = customer_spec[:cart]
+  cart = ShoppingCart.create :customer => customer,
+                             :order_total => cart_spec[:order_total]
 
-#  cart_spec[:items].each do |item_spec|
-#      offer = Offer.first :name => item_spec[:name]
-#      cart.shopping_cart_items.create :offer => offer,
-#                                      :units => item_spec[:units],
-#                                      :item_total => item_spec[:item_total]
-#  end
+  cart_spec[:items].each do |item_spec|
+      offer = Offer.first :name => item_spec[:name]
+      cart.shopping_cart_items.create :offer => offer,
+                                      :units => item_spec[:units],
+                                      :item_total => item_spec[:item_total]
+  end
 
 end

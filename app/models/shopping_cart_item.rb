@@ -4,7 +4,7 @@ require 'data_mapper'
 class ShoppingCartItem
   include DataMapper::Resource
 
-  has 1,   :offer
+  belongs_to :offer
 
   property :id,         Serial
   property :created_at, DateTime
