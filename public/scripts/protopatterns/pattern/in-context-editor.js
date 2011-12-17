@@ -72,7 +72,7 @@
             this._changeState(PanelState);
         },
         'update:success': function(event) {
-            var data = event.memo.data;
+            var data = event.memo.data;     // Expects updated model to be returned
             this.panelView.render(data);
             this.formView.render(data);
             this.panelView.show();
