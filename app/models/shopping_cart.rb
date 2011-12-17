@@ -5,7 +5,7 @@ class ShoppingCart
   include DataMapper::Resource
 
   belongs_to :customer
-  has n,     :shopping_cart_items
+  has n,     :items,     'ShoppingCartItem'
 
   property :id,          Serial
   property :created_at,  DateTime

@@ -54,3 +54,9 @@ delete '/customers/:id' do
   customer = Customer.get(params[:id])
   customer.destroy
 end
+
+# Get the Cart (with items) from an existing Customer
+get '/customers/:id/cart' do
+  customer = Customer.get(params[:id])
+  DataMapper::Inflector::dasherize customer.shopping_cart.to_xml(:methods => [:items])
+end

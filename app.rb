@@ -271,9 +271,9 @@ end
 
   cart_spec[:items].each do |item_spec|
       offer = Offer.first :name => item_spec[:name]
-      cart.shopping_cart_items.create :offer => offer,
-                                      :units => item_spec[:units],
-                                      :item_total => item_spec[:item_total]
+      cart.items.create :offer => offer,
+                        :units => item_spec[:units],
+                        :item_total => item_spec[:item_total]
   end
 
 end
