@@ -43,7 +43,7 @@ put '/offers/:id' do
   offer = Offer.get(params[:id])
   offer.attributes = data
   if offer.save
-    status 201
+    status 200
     DataMapper::Inflector::dasherize offer.to_xml
   else
     status 412

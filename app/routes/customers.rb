@@ -43,7 +43,7 @@ put '/customers/:id' do
   customer = Customer.get(params[:id])
   customer.attributes = data
   if customer.save
-    status 201
+    status 200
     DataMapper::Inflector::dasherize customer.to_xml
   else
     status 412

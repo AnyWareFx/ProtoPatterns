@@ -43,7 +43,7 @@ put '/products/:id' do
   product = Product.get(params[:id])
   product.attributes = data
   if product.save
-    status 201
+    status 200
     DataMapper::Inflector::dasherize product.to_xml
   else
     status 412
