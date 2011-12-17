@@ -73,21 +73,11 @@
         },
         'update:success': function(event) {
             var data = event.memo.data;
-            if (typeof data == "string") {
-                data = data.evalJSON();
-            }
-            this.read(data.id); // Couchification
-        },
-        'update:failure': function(event) {
-            this.formView.render(event.memo.data);
-        },
-        'read:success': function(event) { // Couchification
-            var data = event.memo.data;
             this.panelView.render(data);
             this.formView.render(data);
             this.panelView.show();
         },
-        'read:failure': function(event) { // Couchification
+        'update:failure': function(event) {
             this.formView.render(event.memo.data);
         },
         'on:cancel': function() {
