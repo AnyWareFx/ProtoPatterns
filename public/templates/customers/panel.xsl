@@ -7,12 +7,12 @@
   </xsl:template>
 
   <xsl:template match="customer">
-    <xsl:variable name="identifier" select="id"/>
     <form class="fx-form fx-rounded-bottom fx-two-column-form">
       <xsl:attribute name="action">customers/<xsl:value-of select="id"/></xsl:attribute>
       <fieldset>
         <legend class="fx-rounded-bottom">
           <img src="images/person.png"/> Customer
+          <img src="images/edit.png" class="fx-edit"/>
         </legend>
         <xsl:apply-templates select="errors"/>
         <ol>
@@ -32,11 +32,6 @@
           </li>
         </ol>
       </fieldset>
-      <xsl:if test="id != ''">
-        <fieldset class="fx-control-bar">
-          <button class="fx-edit"><img src="images/edit.png"/> Edit</button>
-        </fieldset>
-      </xsl:if>
     </form>
   </xsl:template>
 
