@@ -17,3 +17,29 @@ class Customer
   property :state,      String
   property :zip,        String, :default => '66212'
 end
+
+
+class ShoppingCart
+  include DataMapper::Resource
+
+  belongs_to :customer
+  has n,     :items,     'ShoppingCartItem'
+
+  property :id,          Serial
+  property :created_at,  DateTime
+
+  property :order_total, Float
+end
+
+
+class ShoppingCartItem
+  include DataMapper::Resource
+
+  belongs_to :offer
+
+  property :id,         Serial
+  property :created_at, DateTime
+
+  property :units,      Integer
+  property :item_total, Float
+end

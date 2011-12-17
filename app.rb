@@ -4,7 +4,7 @@ require 'dm-core'
 require 'dm-migrations'
 
 
-%w(customer offer product product_detail product_offer shopping_cart shopping_cart_item).each do |model|
+%w(customer offer product product_offer).each do |model|
   require "#{File.dirname(__FILE__)}/app/models/#{model}"
 end
 
