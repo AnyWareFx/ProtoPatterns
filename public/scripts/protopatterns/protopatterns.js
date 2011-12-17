@@ -46,8 +46,7 @@ org = org || {};
                             break;
 
                         case 'form':
-                            var hidden = element.select('input[type="hidden"]')[0];
-                            id = hidden.readAttribute('value');
+                            id = element.readAttribute('action');
                             break;
 
                         case 'input':

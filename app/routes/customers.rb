@@ -2,6 +2,7 @@ require 'rubygems'
 require 'sinatra'
 require "dm-core"
 require "dm-serializer"
+require "json"
 
 
 before do
@@ -20,11 +21,11 @@ end
 
 # Add a new Customer
 post '/customers' do
+  data = JSON.parse request.body.read
   customer = Customer.new
-  customer.first_name = params[:first_name]
-  customer.last_name = params[:last_name]
+  customer.attributes = data
   if customer.save
-    location '/customers/' + customer.id
+    headers 'location' => '/customers/' + customer.id.to_s
     status 201
   else
     status 412
@@ -38,9 +39,9 @@ end
 
 # Update an existing Customer
 put '/customers/:id' do
+  data = JSON.parse request.body.read
   customer = Customer.get(params[:id])
-  customer.first_name = params[:first_name]
-  customer.last_name = params[:last_name]
+  customer.attributes = data
   if customer.save
     status 201
   else

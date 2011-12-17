@@ -7,18 +7,15 @@
   </xsl:template>
 
   <xsl:template match="customer">
-    <xsl:variable name="identifier" select="id"/>
     <xsl:variable name="errs" select="errors"/>
     <form class="fx-form fx-rounded-bottom fx-two-column-form" action="javascript:void(0);">
+      <xsl:attribute name="action">customers/<xsl:value-of select="id"/></xsl:attribute>
       <xsl:attribute name="method">
         <xsl:choose>
-          <xsl:when test="$identifier">put</xsl:when>
+          <xsl:when test="id != ''">put</xsl:when>
           <xsl:otherwise>post</xsl:otherwise>
         </xsl:choose>
       </xsl:attribute>
-      <input type="hidden" name="resource">
-        <xsl:attribute name="value">customers/<xsl:value-of select="id"/></xsl:attribute>
-      </input>
       <fieldset>
         <legend class="fx-rounded-bottom">
           <img src="images/person.png"/> Customer
@@ -40,13 +37,13 @@
         <xsl:element name="button">
           <xsl:attribute name="class">
             <xsl:choose>
-              <xsl:when test="$identifier">fx-update</xsl:when>
+              <xsl:when test="id != ''">fx-update</xsl:when>
               <xsl:otherwise>fx-add</xsl:otherwise>
             </xsl:choose>
           </xsl:attribute>
           <img src="images/save.png"/>
           <xsl:choose>
-            <xsl:when test="$identifier"> Save</xsl:when>
+            <xsl:when test="id != ''"> Save</xsl:when>
             <xsl:otherwise> Add</xsl:otherwise>
 
             <!-- TODO Find a 16x16 animated 'wait' gif and determine how to use it
@@ -56,7 +53,7 @@
           </xsl:choose>
         </xsl:element>
         <button class="fx-cancel"><img src="images/close.png"/> Cancel</button>
-        <xsl:if test="$identifier">
+        <xsl:if test="id != ''">
           <button class="fx-remove"><img src="images/remove.png"/> Remove</button>
         </xsl:if>
       </fieldset>
@@ -65,7 +62,7 @@
 
   <xsl:template match="first-name">
     <xsl:variable name="err" select="errors"/>
-    <input id="first_name" name="customer[first_name]">
+    <input id="first_name" name="first_name">
 <!--
       <xsl:attribute name="class">fx-required<xsl:if test="$err"> fx-invalid</xsl:if></xsl:attribute>
 -->
@@ -75,7 +72,7 @@
 
   <xsl:template match="last-name">
     <xsl:variable name="err" select="errors"/>
-    <input id="last_name" name="customer[last_name]">
+    <input id="last_name" name="last_name">
 <!--
       <xsl:attribute name="class">fx-required<xsl:if test="$err"> fx-invalid</xsl:if></xsl:attribute>
 -->
