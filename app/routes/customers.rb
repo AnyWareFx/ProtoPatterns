@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'sinatra'
 require 'dm-core'
-require 'dm-core/support/inflector/methods'
 require 'dm-serializer'
 require 'json'
 
@@ -12,12 +11,12 @@ end
 
 # Get customer list
 get '/customers' do
-  dasherize Customer.all.to_xml
+  DataMapper::Inflector::dasherize Customer.all.to_xml
 end
 
 # Create a new Customer
 get '/customers/new' do
-  dasherize Customer.new.to_xml
+  DataMapper::Inflector::dasherize Customer.new.to_xml
 end
 
 # Add a new Customer
@@ -35,7 +34,7 @@ end
 
 # Get an existing Customer
 get '/customers/:id' do
-  dasherize Customer.get(params[:id]).to_xml
+  DataMapper::Inflector::dasherize Customer.get(params[:id]).to_xml
 end
 
 # Update an existing Customer
@@ -45,7 +44,7 @@ put '/customers/:id' do
   customer.attributes = data
   if customer.save
     status 200
-    dasherize customer.to_xml
+    DataMapper::Inflector::dasherize customer.to_xml
   else
     status 412
   end
@@ -60,5 +59,5 @@ end
 # Get the Cart (with items) from an existing Customer
 get '/customers/:id/cart' do
   customer = Customer.get(params[:id])
-  dasherize customer.shopping_cart.to_xml(:methods => [:items])
+  DataMapper::Inflector::dasherize customer.shopping_cart.to_xml(:methods => [:items])
 end
