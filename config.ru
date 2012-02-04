@@ -13,29 +13,29 @@ require './app/models/models'
 
 #################################################
 #
-# Setup DataMapper
+# Setup DataMapper, and initialize the database
 #
 DataMapper::Logger.new $stdout, :debug
 DataMapper.setup :default, ENV['DATABASE_URL']
 DataMapper.finalize
 
+load    'irb/init_db.rb'
+
 
 #################################################
 #
-# If we're in our development environment,
-# initialize our database and startup WEBrick
+# If we're in our development environment
+# startup WEBrick
 #
 if ENV['RACK_ENV'] == 'development'
 
   require 'webrick'
-  load    'irb/init_db.rb'
 
   options = {
       :Port => 3000,
       :Logger => WEBrick::Log::new($stderr, WEBrick::Log::DEBUG),
       :DocumentRoot => "public"
   }
-
   Rack::Handler::WEBrick.run ProtoDemo::App, options
 
 else
