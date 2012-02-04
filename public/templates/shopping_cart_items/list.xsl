@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 
-  <xsl:template match="shopping-cart-items">
+  <xsl:template match="proto-demo-shopping-cart-items">
     <table class="fx-rounded-bottom">
       <caption class="fx-rounded-top"><img src="images/cart.png"/> Shopping Cart Items</caption>
       <thead>
@@ -15,7 +15,7 @@
         </tr>
       </thead>
       <tbody>
-        <xsl:apply-templates select="shopping-cart-item"/>
+        <xsl:apply-templates select="proto-demo-shopping-cart-item"/>
       </tbody>
       <tfoot>
         <tr>
@@ -25,7 +25,7 @@
     </table>
   </xsl:template>
 
-  <xsl:template match="shopping-cart-item">
+  <xsl:template match="proto-demo-shopping-cart-item">
     <xsl:element name="tr">
       <xsl:attribute name="class">
         <xsl:choose>

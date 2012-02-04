@@ -3,10 +3,10 @@
   <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 
   <xsl:template match="/">
-    <xsl:apply-templates select="customer"/>
+    <xsl:apply-templates select="proto-demo-customer"/>
   </xsl:template>
 
-  <xsl:template match="customer">
+  <xsl:template match="proto-demo-customer">
     <form class="fx-form fx-rounded-bottom fx-two-column-form">
       <xsl:attribute name="action">customers/<xsl:value-of select="id"/></xsl:attribute>
       <fieldset>

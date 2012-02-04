@@ -3,10 +3,10 @@
   <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 
   <xsl:template match="/">
-    <xsl:apply-templates select="shopping-cart-item"/>
+    <xsl:apply-templates select="proto-demo-shopping-cart-item"/>
   </xsl:template>
 
-  <xsl:template match="shopping-cart-item">
+  <xsl:template match="proto-demo-shopping-cart-item">
     <xsl:variable name="identifier" select="id"/>
     <xsl:variable name="errs" select="errors"/>
     <form class="fx-rounded-bottom fx-two-column-form" action="javascript:void(0);">

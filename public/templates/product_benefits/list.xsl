@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 
-  <xsl:template match="product-benefits">
+  <xsl:template match="proto-demo-product-benefits">
     <table class="fx-rounded-bottom">
       <caption class="fx-rounded-top"><img src="images/products.png"/> Benefits</caption>
       <thead>
@@ -18,7 +18,7 @@
         </tr>
       </thead>
       <tbody>
-        <xsl:apply-templates select="product-benefit"/>
+        <xsl:apply-templates select="proto-demo-product-benefit"/>
       </tbody>
       <tfoot>
         <tr>
@@ -28,7 +28,7 @@
     </table>
   </xsl:template>
 
-  <xsl:template match="product-benefit">
+  <xsl:template match="proto-demo-product-benefit">
     <xsl:element name="tr">
       <xsl:attribute name="class">
         <xsl:choose>

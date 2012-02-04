@@ -2,7 +2,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:output method="html" version="1.0" encoding="UTF-8" indent="yes"/>
 
-  <xsl:template match="product-benefit">
+  <xsl:template match="proto-demo-product-benefit">
     <xsl:variable name="identifier" select="id"/>
     <xsl:variable name="errs" select="errors"/>
     <form class="fx-rounded-bottom fx-two-column-form" action="javascript:void(0);">
