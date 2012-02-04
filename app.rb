@@ -8,6 +8,7 @@ require 'dm-migrations'
   require "#{File.dirname(__FILE__)}/app/models/#{model}"
 end
 
+
 Dir["#{File.dirname(__FILE__)}/app/routes/*.rb"].each do |route|
   require route
 end
