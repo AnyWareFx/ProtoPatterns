@@ -33,11 +33,11 @@ th {
 }
 
 tbody tr.fx-odd, tfoot, .fx-form, .fx-panel {
-    background-color: #efefef;
+    background-color: #f7f7f7;
 }
 
 tbody tr.fx-even, caption, legend {
-    background-color: #cdcdcd;
+    background-color: #e7e7e7;
 }
 
 tbody tr:hover {
