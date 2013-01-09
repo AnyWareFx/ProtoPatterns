@@ -25,6 +25,19 @@
     <link rel="stylesheet" type="text/css" href="styles/color.css"/>
     <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
     <link rel="stylesheet" type="text/css" href="styles/form-two-column-layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/site.css"/>
+
+    <style type="text/css">
+        #content {
+            position: fixed;
+            top: 30px;
+            bottom: 30px;
+            left: 30px;
+            overflow: scroll;
+            width: 67%;
+            min-width: 600px;
+        }
+    </style>
 
     <script type="text/javascript">
         document.observe("dom:loaded", function() {
@@ -34,16 +47,19 @@
     </script>
 </head>
 <body>
-<h1>List Manager Pattern Test</h1>
+<div id="content" class="fx-drop-shadow">
 
-<div id="list-manager-test" class="fx-controller fx-pattern fx-list-manager">
-    <a href="customers" class="fx-resource"></a>
+    <h1>ProtoPatterns ListManager Test</h1>
 
-    <a href="templates/customers/list.xsl" class="fx-list-template"></a>
-    <a href="templates/customers/form.xsl" class="fx-form-template"></a>
+    <div id="list-manager-test" class="fx-controller fx-pattern fx-list-manager">
+        <a href="customers" class="fx-resource"></a>
 
-    <div class="fx-list"></div>
-    <div class="fx-form"></div>
+        <a href="templates/customers/list.xsl" class="fx-list-template"></a>
+        <a href="templates/customers/form.xsl" class="fx-form-template"></a>
+
+        <div class="fx-list"></div>
+        <div class="fx-form"></div>
+    </div>
 </div>
 </body>
 </html>

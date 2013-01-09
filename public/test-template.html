@@ -13,6 +13,19 @@
     <link rel="stylesheet" type="text/css" href="styles/style.css"/>
     <link rel="stylesheet" type="text/css" href="styles/color.css"/>
     <link rel="stylesheet" type="text/css" href="styles/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/site.css"/>
+
+    <style type="text/css">
+        #content {
+            position: fixed;
+            top: 30px;
+            bottom: 30px;
+            left: 30px;
+            overflow: scroll;
+            width: 67%;
+            min-width: 600px;
+        }
+    </style>
 
     <script type="text/javascript">
         document.observe("dom:loaded", function() {
@@ -42,8 +55,13 @@
     </script>
 </head>
 <body>
-<div id="template-test" class="fx-controller">
-    <a href="templates/customers/view.xsl" class="fx-view-template"></a>
+<div id="content" class="fx-drop-shadow">
+
+    <h1>ProtoPatterns Template Test</h1>
+
+    <div id="template-test" class="fx-controller">
+        <a href="templates/customers/view.xsl" class="fx-view-template"></a>
+    </div>
 </div>
 </body>
 </html>

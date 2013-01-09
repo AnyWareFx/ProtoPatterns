@@ -11,7 +11,7 @@ DataMapper.auto_migrate!
             :description => "By specifying task dependencies..."
         }, {
             :name => "Multiple Views",
-            :description => "Along with familiar Calendar and Gannt Chart views, ActionPlanFx also provides and intuitive Task Dependency Graph"
+            :description => "Along with familiar Calendar and Gannt Chart views, ActionPlanFx also provides an intuitive Task Dependency Graph"
         }],
         :features => [{
             :name => "Calendar View",
