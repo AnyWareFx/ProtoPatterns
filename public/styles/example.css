@@ -1,0 +1,9 @@
+#content {
+    position: fixed;
+    top: 30px;
+    bottom: 30px;
+    left: 30px;
+    overflow: scroll;
+    width: 67%;
+    min-width: 600px;
+}
