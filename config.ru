@@ -16,7 +16,7 @@ require './app/models/models'
 # Setup DataMapper, and initialize the database
 #
 DataMapper::Logger.new $stdout, :debug
-DataMapper.setup :default, ENV['DATABASE_URL']
+DataMapper.setup :default, ENV['DATABASE_URL'] || 'sqlite::memory:'
 DataMapper.finalize
 
 load    'irb/init_db.rb'
